@@ -5,6 +5,8 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     private bool insideInteractionZone = false;
+    public bool canBeSave = true;
+    public Item inventoryItem;
 
     public virtual void Interact()
     {
@@ -12,15 +14,30 @@ public class Interactable : MonoBehaviour
     }
 
     public virtual void Interact2() {}
+    public virtual void InventoryInteract() {}
 
     void Update()
     {
-        if (insideInteractionZone && Input.GetKeyDown(KeyCode.E))
-        {
-            Interact();
-        }
+        InventoryInteract();                
         if (insideInteractionZone)
+        {
             Interact2();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interact();
+            }
+            else if (canBeSave && Input.GetKeyDown(KeyCode.F))
+            {
+                //Guardar en inventario
+                if (inventoryItem != null)
+                {
+                    Inventory.Instance.Add(inventoryItem);
+                    Destroy(gameObject);
+                }
+                
+            }
+        }
+            
     }
 
     void OnTriggerEnter(Collider other)
