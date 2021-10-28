@@ -4,12 +4,36 @@ using UnityEngine;
 
 public class ARInteractable : Interactable
 {
-    public Vector3 ejeRotacion;
+    [SerializeField] private GameObject modelo1;
+    [SerializeField] private GameObject modelo2;
+    [SerializeField] private GameObject modelo3;
+    private Vector3 setScale;
+    int cont = 0;
     
     void OnMouseDown() 
     {
         Debug.Log($"Interactuando con {name}");
-        transform.Rotate(ejeRotacion, 40f);
-        transform.localScale = new Vector3(Random.Range(0.9f,2f),Random.Range(0.9f,2f),Random.Range(0.9f,2f));
+        
+        if (cont == 0)
+        {
+            setScale = modelo1.transform.localScale;
+            modelo1.transform.localScale = modelo2.transform.localScale;
+            modelo2.transform.localScale = setScale;
+            cont = 1;
+        }
+        else if (cont == 1)
+        {
+            setScale = modelo2.transform.localScale;
+            modelo2.transform.localScale = modelo1.transform.localScale;
+            modelo3.transform.localScale = setScale;
+            cont = 2;
+        }
+        else
+        {
+            setScale = modelo3.transform.localScale;
+            modelo3.transform.localScale = modelo1.transform.localScale;
+            modelo1.transform.localScale = setScale;
+            cont = 0;
+        }
     }
 }
