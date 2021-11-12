@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Practica5.unity
-    guid: 8d6762a65eb1796458ed9c728bbb1505
-  m_configObjects: {}
+    path: Assets/Scenes/Practica5_4.unity
+    guid: 68922122ec8a2a2449c20ae57f64ec15
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 76b8b29c3969a5b4ab976ca9faee9537, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e19b3371d0889e645a29bccb012bf541, type: 2}
